@@ -10,30 +10,36 @@ class Guess extends Component {
         super(props);
 
         this.guess = this.guess.bind(this);
+        this.hotOrCold = this.hotOrCold.bind(this);
+    }
+
+    hotOrCold() {
+        if (this.props.guess === this.props.numberGoal) {
+            return <div>You Win!</div>
+        } else {
+            return <div>Guess Again</div>
+        }
     }
 
     guess(e) {
         e.preventDefault();
         store.dispatch(actions.numberGuess(this.number.value));
+        
     }
 
     render() {
-
-        const hotOrCold = () => {
-            return <div>{this.props}</div>
-        }
 
         return(
             <div>
                 <form onSubmit={this.guess}>
                     Guess:<br />
-                    <input type="text" name="guess" ref={ref => this.number = ref} />
+                    <input type="number" name="guess" ref={ref => this.number = ref} />
                     <br />
                     <input type="submit" value="Submit" />
                 </form>
-                <div>
-                    {hotOrCold}
-                </div>
+                {this.props.numberGoal} <br/>
+                {this.props.guess} <br/>
+                {this.hotOrCold}
             </div>
         )
     }
@@ -41,7 +47,7 @@ class Guess extends Component {
 
 const mapStateToProps = (state, props) => (
     {
-    // numberGoal: state.numberGoal,
+    numberGoal: state.numberGoal,
     guess: state.playerGuess
 })
 

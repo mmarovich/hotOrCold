@@ -10,9 +10,10 @@ export const startGame = game => ({
 // Player guesses a number
 
 export const NUMBER_GUESS = 'NUMBER_GUESS';
-export const numberGuess = guess => ({
+export const numberGuess = (guess, guessTimes) => ({
     type: NUMBER_GUESS,
-    guess
+    guess,
+    guessTimes
 });
 
 // Player starts a new game.
