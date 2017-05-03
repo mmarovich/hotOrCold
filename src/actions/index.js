@@ -23,3 +23,16 @@ export const newGame = newGame => ({
     type: NEW_GAME,
     newGame
 });
+
+export const FETCH_FEWESTGUESSES_SUCCESS = 'FETCH_FEWESTGUESSES_SUCCESS';
+export const fetchFewestGuessesSuccess = (fewestGuesses) => ({
+    type: FETCH_FEWESTGUESSES_SUCCESS,
+    fewestGuesses
+});
+
+export const FETCH_FEWESTGUESSES_ERROR= 'FETCH_FEWESTGUESSES_ERROR';
+export const fetchFewestGuessesError = (fewestGuesses, error) => ({
+    type: FETCH_FEWESTGUESSES_ERROR,
+    fewestGuesses,
+    error
+});

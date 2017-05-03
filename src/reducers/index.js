@@ -1,11 +1,10 @@
 import * as actions from '../actions/index';
 
-let guessCounter = 1;
-
 const initialRepositoryState = {
     numberGoal: null,
     playerGuess: null,
-    guessTimes: guessCounter
+    guessTimes: 0,
+    fewestGuesses: 0
 }
 
 export const repositoryReducer = (state=initialRepositoryState, action) => {
@@ -25,7 +24,16 @@ export const repositoryReducer = (state=initialRepositoryState, action) => {
         return {
             ...state,
             playerGuess: parseInt(action.guess),
-            guessTimes: guessCounter++
+            guessTimes: state.guessTimes + 1
+        }
+    } else if (action.type === actions.FETCH_FEWESTGUESSES_SUCCESS) {
+        return {
+            ...state,
+            fewestGuesses: action.fewestGuesses
+        }
+    } else if (action.type === actions.FETCH_FEWESTGUESSES_ERROR) {
+        return {
+            ...state
         }
     }
     return state;
